@@ -20,6 +20,10 @@ export class TimelineService {
       name: 'Testando 3',
       text: 'Testando um texto para a linha de textos!! Com mais texto!!',
     },
+    {
+      name: 'Testando 4',
+      text: 'Testando um texto para a linha de textos!! Com mais texto!!',
+    },
   ];
 
 
