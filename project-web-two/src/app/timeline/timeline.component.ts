@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimelineService } from '../shared/timeline.service';
 
 @Component({
   selector: 'app-timeline',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimelineComponent implements OnInit {
 
-  constructor() { }
+  posts = [];
 
-  ngOnInit() {
-  }
+constructor(private timelineService: TimelineService) { }
+
+ngOnInit() {
+  this.posts = this.timelineService.getPosts();
+}
 
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatDividerModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { TimelineComponent } from './timeline/timeline.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TimelineComponent
+    TimelineComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     MatIconModule,
     MatProgressSpinnerModule,
     FormsModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
