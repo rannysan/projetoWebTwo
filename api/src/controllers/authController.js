@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('../dataBase/index');
 
 const User = require('../models/user');
 
@@ -6,7 +7,9 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
+    console.log(req.body);
     const user = await User.create(req.body);
+    console.log('oioi');
 
     return res.send({ user });
   } catch (err) {
