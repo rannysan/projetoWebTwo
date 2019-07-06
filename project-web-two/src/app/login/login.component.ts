@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { TimelineService } from '../timeline.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { TimelineService } from '../timeline.service';
 export class LoginComponent implements OnInit {
   public form: FormGroup;
 
-  constructor(private router: Router, private timelineService: TimelineService) { }
+  constructor(
+    private router: Router,
+    private timelineService: TimelineService,
+    private snackBar: MatSnackBar,
+  ) { }
 
   username: string;
   password: string;
@@ -28,8 +33,9 @@ export class LoginComponent implements OnInit {
             console.log(data);
             console.log('User is logged in');
             this.router.navigateByUrl('/timeline');
+            this.snackBar.open('Login efetuado com sucesso!', null, { duration: 2000 });
           }, (err) => {
-            console.log(err);
+            this.snackBar.open(err.error.error, null, { duration: 2000 });
           }
         );
     }

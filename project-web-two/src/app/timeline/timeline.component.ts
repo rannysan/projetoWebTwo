@@ -10,10 +10,20 @@ export class TimelineComponent implements OnInit {
 
   posts = [];
 
-constructor(private timelineService: TimelineService) { }
+  constructor(private timelineService: TimelineService) { }
 
-ngOnInit() {
-  this.posts = this.timelineService.getPosts();
-}
+  ngOnInit() {
+    this.timelineService.getPosts()
+      .subscribe(data => {
+        this.posts = data.posts;
+        data.posts.forEach(fe => {
+          console.log(fe);
+        });
+      }, (err) => {
+        console.log(err.error);
+      });
+  }
+
+
 
 }

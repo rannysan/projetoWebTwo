@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatDividerModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatDividerModule,
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TimelineService } from './timeline.service';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TimelineService } from './timeline.service';
     FormsModule,
     MatDividerModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [
     TimelineService,
