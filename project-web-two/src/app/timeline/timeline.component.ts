@@ -16,9 +16,6 @@ export class TimelineComponent implements OnInit {
     this.timelineService.getPosts()
       .subscribe(data => {
         this.posts = data.posts;
-        data.posts.forEach(fe => {
-          console.log(fe);
-        });
       }, (err) => {
         console.log(err.error);
       });
