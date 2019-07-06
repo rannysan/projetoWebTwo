@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { map, tap, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,18 @@ export class TimelineService {
   private url = 'http://localhost:3000';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) {
     this.token = JSON.parse(localStorage.getItem('authorization'));
   }
 
 
   getPosts(): Observable<any> {
+    if (this.token === null) {
+      this.router.navigateByUrl('');
+    }
+
     const header = {
       headers: new HttpHeaders()
         .set('authorization', this.token)
