@@ -31,6 +31,8 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { name, password } = req.body;
+  console.log( req.body );
+  console.log( name );
 
   const user = await User.findOne({ name }).select('+password');
 
@@ -40,11 +42,11 @@ router.post('/login', async (req, res) => {
   if (!await bcryptjs.compare(password, user.password))
     return res.status(400).send({ error: 'Senha inválida!' });
 
-    user.password = undefined;
+  user.password = undefined;
 
-    const token = jwt.sign({ id: user.id }, authConfig.secret, {
-      expiresIn: 86400,
-    });
+  const token = jwt.sign({ id: user.id }, authConfig.secret, {
+    expiresIn: 86400,
+  });
 
 
   res.send({ user, token });

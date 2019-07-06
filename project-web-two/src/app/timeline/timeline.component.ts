@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TimelineService } from '../shared/timeline.service';
+import { TimelineService } from '../timeline.service';
 
 @Component({
   selector: 'app-timeline',

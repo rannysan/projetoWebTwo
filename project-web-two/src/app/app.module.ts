@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TimelineService } from './timeline.service';
 
 @NgModule({
   declarations: [
@@ -36,8 +38,12 @@ import { ProfileComponent } from './profile/profile.component';
     MatProgressSpinnerModule,
     FormsModule,
     MatDividerModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    TimelineService,
+    HttpClientModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
