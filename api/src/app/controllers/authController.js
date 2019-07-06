@@ -31,8 +31,6 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { name, password } = req.body;
-  console.log( req.body );
-  console.log( name );
 
   const user = await User.findOne({ name }).select('+password');
 
@@ -48,8 +46,17 @@ router.post('/login', async (req, res) => {
     expiresIn: 86400,
   });
 
-
   res.send({ user, token });
+});
+
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find();
+
+    return res.send({ users });
+  } catch (error) {
+    return res.status(400).send({ error: 'Error ao listar usuários!' })
+  }
 });
 
 module.exports = app => app.use('/auth', router);

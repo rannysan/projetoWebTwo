@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimelineService } from './../timeline.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  users = [];
+
+  constructor(private timelineService: TimelineService) { }
 
   ngOnInit() {
+    this.timelineService.getUsers()
+      .subscribe((data) => {
+        this.users = data.users;
+        console.log(this.users);
+      });
   }
 
 }

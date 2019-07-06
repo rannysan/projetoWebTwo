@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Posts } from './shared/IPosts';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -32,6 +31,18 @@ export class TimelineService {
         .set('authorization', this.token)
     };
     return this.http.get<any>(this.url + '/timeline', header);
+  }
+
+  getUsers(): Observable<any> {
+    if (this.token === null) {
+      this.router.navigateByUrl('');
+    }
+
+    const header = {
+      headers: new HttpHeaders()
+        .set('authorization', this.token)
+    };
+    return this.http.get<any>(this.url + '/auth/users', header);
   }
 
   login(username: string, pass: string): Observable<any> {
