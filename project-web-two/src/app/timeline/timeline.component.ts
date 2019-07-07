@@ -15,7 +15,14 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.timelineService.getPosts()
       .subscribe(data => {
-        this.posts = data.posts;
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        currentUser.user.seguidores.forEach((seg) => {
+          data.posts.forEach((p) => {
+            if (p.user._id === seg) {
+              this.posts.push(p);
+            }
+          });
+        });
       }, (err) => {
         console.log(err.error);
       });
