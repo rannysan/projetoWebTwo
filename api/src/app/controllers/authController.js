@@ -59,4 +59,18 @@ router.get('/users', async (req, res) => {
   }
 });
 
+router.put('/:userId', async (req, res) => {
+  try {
+    const { fId } = req.body;
+    const seg = await User.findById(fId);
+    const user = await User.findByIdAndUpdate(req.params.userId, {
+      $push: { seguidores: seg._id }
+    }, { 'new': true });
+
+    return res.send({ user });
+  } catch (error) {
+    return res.status(400).send({ error: 'Error ao atualizar seguidores' })
+  }
+});
+
 module.exports = app => app.use('/auth', router);

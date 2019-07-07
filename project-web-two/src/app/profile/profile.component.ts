@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
     this.timelineService.getUsers()
       .subscribe((data) => {
         this.users = data.users;
-        console.log(this.users);
       });
   }
 

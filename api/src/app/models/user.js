@@ -11,10 +11,10 @@ const UserSchema = new mongoose.Schema({
     require: true,
     select: false,
   },
-  follow: {
+  seguidores: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-  },
+  }],
 });
 
 UserSchema.pre('save', async function (next) {
