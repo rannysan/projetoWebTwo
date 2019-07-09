@@ -45,6 +45,49 @@ export class TimelineService {
     return this.http.get<any>(this.url + '/auth/users', header);
   }
 
+  putUsers(id: string, followId: string): Observable<any> {
+    return this.http.put<any>(this.url + '/auth/' + id, { fId: followId })
+      .pipe(
+        map(user => {
+          if (user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+          }
+          return user;
+        })
+      );
+  }
+
+  insertPost(text: string): Observable<any> {
+    const headers = {
+      headers: new HttpHeaders()
+        .set('authorization', this.token)
+    };
+
+    return this.http.post(this.url + '/timeline', { text }, headers);
+  }
+
+  deletePost(id: string) {
+    const headers = {
+      headers: new HttpHeaders()
+        .set('authorization', this.token)
+    };
+
+    return this.http.delete(this.url + '/timeline/' + id, headers);
+  }
+
+  editPost(id: string, text: string) {
+    const headers = {
+      headers: new HttpHeaders()
+        .set('authorization', this.token)
+    };
+
+    return this.http.put(this.url + '/timeline/' + id, { text }, headers);
+  }
+
+  register(name: string, password: string) {
+    return this.http.post(this.url + '/auth/register', { name, password });
+  }
+
   login(username: string, pass: string): Observable<any> {
     return this.http.post<any>(this.url + '/auth/login', { name: username, password: pass })
       .pipe(

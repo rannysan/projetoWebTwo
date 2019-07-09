@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
+  newUsername: string;
+  newPassword: string;
+
   ngOnInit() { }
 
   login(): void {
@@ -30,10 +33,23 @@ export class LoginComponent implements OnInit {
       this.timelineService.login(this.username, this.password)
         .subscribe(
           (data) => {
-            console.log(data);
-            console.log('User is logged in');
             this.router.navigateByUrl('/timeline');
             this.snackBar.open('Login efetuado com sucesso!', null, { duration: 2000 });
+          }, (err) => {
+            this.snackBar.open(err.error.error, null, { duration: 2000 });
+          }
+        );
+    }
+  }
+
+  register(): void {
+
+    if (this.newUsername && this.newPassword) {
+
+      this.timelineService.register(this.newUsername, this.newPassword)
+        .subscribe(
+          (data) => {
+            this.snackBar.open('Usuário registrado com sucesso!', null, { duration: 2000 });
           }, (err) => {
             this.snackBar.open(err.error.error, null, { duration: 2000 });
           }

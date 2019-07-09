@@ -16,13 +16,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TimelineService } from './timeline.service';
 import { MatSnackBarModule } from '@angular/material';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TimelineComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

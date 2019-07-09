@@ -1,0 +1,24 @@
+<h3 class="center"> • {{currentUser.user.name}}</h3>
+
+<mat-divider></mat-divider>
+
+<div *ngFor="let post of posts">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="center">
+        <mat-form-field class="example-full-width">
+          <input matInput #text maxlength="256" placeholder="text" value="{{post.text}}">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="center">
+      <button mat-raised-button color="primary" (click)="edit(post._id, text.value)">EDITAR</button>
+      <button mat-raised-button color="warn" (click)="delete(post._id)">APAGAR</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-divider></mat-divider>
+</div>
